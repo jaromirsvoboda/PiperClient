@@ -1,0 +1,9 @@
+.cell {
+    width: 6em;
+    height: 6em;
+    margin: 0.25em;
+}
+
+.emptyCell {
+    background-color: lightskyblue;
+}
