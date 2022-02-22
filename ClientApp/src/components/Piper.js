@@ -8,6 +8,7 @@ export function Piper(props) {
     const [isResultFileSelected, setResultFileIsSelected] = useState(false);
     const [isInputFileSelected, setInputFileIsSelected] = useState(false);
     const [minHclpf, setMinHclpf] = useState(0);
+    const [outputLog, setOutputLog] = useState("");
 
     const resultFileSelectHandler = (event) => {
         setSelectedAutoPipeResultFile(event.target.files[0]);
@@ -126,6 +127,10 @@ export function Piper(props) {
                 </Col>
             </FormGroup>
             <Button onClick={submitHandler}>Submit</Button>
+            <FormGroup>
+                <Label for="exampleText">Text Area</Label>
+                <Input type="textarea" name="text" id="exampleText" readOnly="true"/>
+            </FormGroup>
         </Form>
     );
 }
