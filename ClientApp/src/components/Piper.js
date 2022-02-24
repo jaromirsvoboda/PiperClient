@@ -8,7 +8,7 @@ export function Piper(props) {
     const [isResultFileSelected, setResultFileIsSelected] = useState(false);
     const [isInputFileSelected, setInputFileIsSelected] = useState(false);
     const [minHclpf, setMinHclpf] = useState(0);
-    const [outputLog, setOutputLog] = useState("");
+    const [outputLog, setOutputLog] = useState("asdfasdf as\n asdfsdf\n---done");
 
     const resultFileSelectHandler = (event) => {
         setSelectedAutoPipeResultFile(event.target.files[0]);
@@ -49,6 +49,7 @@ export function Piper(props) {
                 const filename = parts[1].split('=')[1];
 
                 const veryLongHeader = res.headers.get('VeryLongHeader');
+                const userMessage = res.headers.get('UserMessage');
 
                 const link = document.createElement('a');
                 link.href = blobUrl;
@@ -129,7 +130,7 @@ export function Piper(props) {
             <Button onClick={submitHandler}>Submit</Button>
             <FormGroup>
                 <Label for="exampleText">Text Area</Label>
-                <Input type="textarea" name="text" id="exampleText" readOnly="true"/>
+                <Input type="textarea" name="text" id="exampleText" readOnly="{true}" value={outputLog} rows="5"/>
             </FormGroup>
         </Form>
     );

@@ -8,6 +8,54 @@
             // Use IntelliSense to find out which attributes exist for C# debugging
             // Use hover for the description of the existing attributes
             // For further information visit https://github.com/OmniSharp/omnisharp-vscode/blob/master/debugger-launchjson.md
+            "name": ".NET Core Launch (Edge)",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "build",
+            // If you have changed target frameworks, make sure to update the program path.
+            "program": "${workspaceFolder}/bin/Debug/net6.0/Piper.dll",
+            "args": [],
+            "cwd": "${workspaceFolder}",
+            "stopAtEntry": false,
+            // Enable launching a web browser when ASP.NET Core starts. For more information: https://aka.ms/VSCode-CS-LaunchJson-WebBrowser
+            "serverReadyAction": {
+                "action": "openExternally",
+                "pattern": "\\bNow listening on:\\s+(https?://\\S+)"
+            },
+            "env": {
+                "ASPNETCORE_ENVIRONMENT": "Development"
+            },
+            "sourceFileMap": {
+                "/Views": "${workspaceFolder}/Views"
+            },
+            "launchBrowser": {
+                "enabled": true,
+                "args": "${auto-detect-url}",
+                "windows": {
+                    "command": "cmd.exe",
+                    "args": "/C start \"\" \"C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe\" ${auto-detect-url}"
+                },
+                "osx": {
+                    "command": "open"
+                },
+                "linux": {
+                    "command": "xdg-open"
+                }
+            },
+            // "windows": {
+            //     "launchBrowser": {
+            //         "enabled": true,
+            //         "windows": {
+            //             "command": "cmd.exe",
+            //             "args": "/C start ${auto-detect-url}"
+            //         }
+            //     }
+            // }
+        },
+        {
+            // Use IntelliSense to find out which attributes exist for C# debugging
+            // Use hover for the description of the existing attributes
+            // For further information visit https://github.com/OmniSharp/omnisharp-vscode/blob/master/debugger-launchjson.md
             "name": ".NET Core Launch (web)",
             "type": "coreclr",
             "request": "launch",
@@ -27,12 +75,18 @@
             },
             "sourceFileMap": {
                 "/Views": "${workspaceFolder}/Views"
-            }
+            },
         },
         {
             "name": ".NET Core Attach",
             "type": "coreclr",
             "request": "attach"
+        },
+        {
+            "name": ".NET Core Attach 2",
+            "type": "coreclr",
+            "request": "attach",
+            "processId": "${command:pickProcess}"
         }
     ]
 }
