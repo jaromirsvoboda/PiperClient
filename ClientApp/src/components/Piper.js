@@ -22,7 +22,7 @@ export function Piper(props) {
 
     // const minHclpfChangeHandler
 
-    const submitHandler = () => {
+    const fileRequestHandler = () => {
         const formData = new FormData();
         formData.name = "some name";
         formData.append('AutoPipeResultFile', selectedAutoPipeResultFile);
@@ -30,7 +30,7 @@ export function Piper(props) {
         formData.append('MinHclpf', minHclpf);
 
         fetch(
-            'https://localhost:44378/piper',
+            'https://localhost:5001/piper/FileResponse',
             {
                 method: 'POST',
                 body: formData,
@@ -39,7 +39,7 @@ export function Piper(props) {
             // .then(res => res.blob())
             .then(async (res) => {
                 const blob = await res.blob();
-                const newBlob = new Blob([blob]);
+                const newBlob = new Blob([blob]);   
 
                 const blobUrl = window.URL.createObjectURL(newBlob);
 
@@ -74,6 +74,36 @@ export function Piper(props) {
                 console.error('Error:', error);
             });
     };
+
+    const stringRequestHandler = () => {
+        fetch(
+            'https://localhost:5001/piper',
+            {
+                method: 'POST',
+                body: JSON.stringify({a: "abc"}),
+            }
+        )
+            // .then(res => res.blob())
+            .then(response => response.json())
+            .then((responseJson) => {
+                console.log("JSON Response:")
+                console.log(responseJson);
+            })
+            // .then(async (response) => {
+            //     console.log("String Response:")
+            //     console.log(response);
+            //     console.log(response.json());
+            //     // const reader = response.body.getReader();
+            //     // reader.read().then(({done, value}) => {
+            //     //     console.log(done, value);
+            //     // })
+            // })
+
+            .catch((error) => {
+                console.error('Error:', error);
+            });
+    };
+
 
     return (
         <Form>
@@ -127,7 +157,8 @@ export function Piper(props) {
                     />
                 </Col>
             </FormGroup>
-            <Button onClick={submitHandler}>Submit</Button>
+            <Button onClick={fileRequestHandler}>Submit File Request</Button>
+            <Button onClick={stringRequestHandler}>Submit String Request</Button>
             <FormGroup>
                 <Label for="exampleText">Text Area</Label>
                 <Input type="textarea" name="text" id="exampleText" readOnly="{true}" value={outputLog} rows="5"/>
